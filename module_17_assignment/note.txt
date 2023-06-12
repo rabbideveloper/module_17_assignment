@@ -61,4 +61,192 @@ Here's the code to retrieve the first record from the "posts" table where the "i
     }
 
 
+5. Question Answer -------------
 
+    $posts = DB::table('posts')
+                    ->where('id', 2)
+                    ->value('description');
+
+    return $posts;
+
+
+6. Question Answer -------------
+
+    The first() and find() methods in Laravel's query builder are used to retrieve single records from a database table, but they differ in their approach and usage.
+
+    1. first() method:
+    The first() method is used to retrieve the first record that matches the given query criteria. It is commonly used when you want to retrieve a single record based on specific conditions, such as filtering by a column value or applying sorting criteria. The first() method returns a single instance of the model or a plain object.
+
+        Example usage:
+
+        $user = DB::table('users')->where('status', 'active')->first();
+
+    2. find() method:
+    The find() method is used to retrieve a record based on its primary key value. It is commonly used when you want to fetch a record by its unique identifier, such as the "id" column. The find() method returns a single instance of the model or a plain object.
+
+       Example usage:
+
+       $user = DB::table('users')->find(1);
+
+
+7. Question Answer ----------------
+
+
+    $posts = DB::table('posts')
+                ->select('title')
+                ->get();
+
+    return $posts;
+
+8. Question Answer ----------------
+
+    $result = DB::table('posts')->insert([
+        'title' => 'X',
+        'slug' => 'X',
+        'excerpt' => 'excerpt',
+        'description' => 'description',
+        'is_published' => true,
+        'min_to_read' => 2
+    ]);
+
+    return $result;
+
+9. Question Answer --------------------
+
+    $affectedRows = DB::table('posts')
+                    ->where('id', 2)
+                    ->update([
+                        'excerpt' => 'Laravel 10',
+                        'description' => 'Laravel 10'
+                    ]);
+
+    return $affectedRows;
+
+10. Question Answer -----------------
+
+    $affectedRows = DB::table('posts')
+                    ->where('id', 3)
+                    ->delete();
+
+    return $affectedRows;
+
+
+11. Question Answer ----------------
+
+The aggregate methods in Laravel's query builder (count(), sum(), avg(), max(), and min()) allow you to perform calculations on a specific column or set of columns in a database table. These methods are used to retrieve aggregated results from the data, such as the total count of rows, the sum of a numeric column, the average value, the maximum value, or the minimum value.
+
+Here's an explanation and example of each aggregate method:
+
+    1. count():
+
+       Purpose: Retrieves the total count of rows in a table or the number of rows that match specific conditions.
+       Usage example:
+
+       $count = DB::table('users')->count();
+
+    2. sum():
+
+       Purpose: Calculates the sum of a numeric column.
+       Usage example:
+
+       $total = DB::table('orders')->sum('amount');
+
+    3. avg():
+
+       Purpose: Calculates the average value of a numeric column.
+       Usage example:
+
+       $average = DB::table('products')->avg('price');
+
+    4. max():
+
+       Purpose: Retrieves the maximum value of a column.
+       Usage example:
+
+       $maxValue = DB::table('sales')->max('revenue');
+
+    5. min():
+
+       Purpose: Retrieves the minimum value of a column.
+       Usage example:
+
+       $minValue = DB::table('products')->min('price');
+
+
+12. Question Answer ---------------
+
+
+    The whereNot() method in Laravel's query builder is used to add a "not" condition to a query. It allows you to exclude records that do not meet a specific condition from the result set. This method is helpful when you want to retrieve records that do not match a certain value or condition.
+
+    Here's an example of how to use the whereNot() method in Laravel's query builder:
+
+    $users = DB::table('users')
+                ->whereNot('status', 'active')
+                ->get();
+
+
+    The resulting query will retrieve all users whose "status" is not 'active'. This can be useful, for example, when you want to retrieve all inactive users or exclude certain values from the result set.
+
+    You can also chain multiple whereNot() methods or combine them with other query conditions to further refine the result set. For instance:
+
+
+    $users = DB::table('users')
+                ->whereNot('status', 'active')
+                ->whereNot('role', 'admin')
+                ->get();
+
+
+13. Question Answer -----------------
+
+    The exists() and doesntExist() methods in Laravel's query builder are used to check the existence of records in a database table. They provide a convenient way to verify whether a record or a set of records exists or does not exist based on specific conditions.
+
+    Here's an explanation of the difference between the two methods and how they are used:
+
+    1. exists() method:
+
+       Purpose: Checks if one or more records exist in a table that match specific conditions.
+       Usage example:
+
+       $exists = DB::table('users')
+                   ->where('status', 'active')
+                   ->exists();
+
+
+    2. doesntExist() method:
+
+       Purpose: Checks if no records exist in a table that match specific conditions.
+       Usage example:
+
+       $doesntExist = DB::table('users')
+                       ->where('status', 'inactive')
+                       ->doesntExist();
+
+
+
+    ** Key differences:
+
+       exists() returns true if at least one matching record is found, while doesntExist() returns true if no matching record is found.
+       exists() is used to determine if records exist based on specific conditions, while doesntExist() is used to determine if records do not exist based on specific conditions.
+       Both methods are typically used in combination with the where() or other query methods to define the conditions for existence or non-existence.
+       By using exists() and doesntExist(), you can easily validate whether records exist or not in your database based on the specified conditions, enabling you to take appropriate actions or make informed decisions in your application.
+
+
+
+14. Question Answer ---------------
+
+    $posts = DB::table('posts')
+                ->whereBetween('min_to_read', [1, 5])
+                ->get();
+
+    return $posts;
+
+
+
+15. Question Answer ---------------
+
+
+    $affectedRows = DB::table('posts')
+                    ->where('id', 3)
+                    ->increment('min_to_read', 1);
+
+    return $affectedRows;
