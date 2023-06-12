@@ -1,0 +1,13 @@
+1. Question answers---
+
+Laravel's query builder is a feature of the Laravel framework that provides a convenient and expressive way to interact with databases. It allows you to build and execute database queries using a fluent and chainable interface, making it easier to retrieve, insert, update, and delete data from a database without writing raw SQL statements.
+
+
+Here's an example to illustrate the simplicity and elegance of Laravel's query builder:
+
+$users = DB::table('users')
+            ->select('id', 'name', 'email')
+            ->where('age', '>', 18)
+            ->orderBy('name', 'asc')
+            ->get();
+
