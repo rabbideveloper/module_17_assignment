@@ -1,4 +1,4 @@
-1. Question answers---
+1. Question Answers---
 
 Laravel's query builder is a feature of the Laravel framework that provides a convenient and expressive way to interact with databases. It allows you to build and execute database queries using a fluent and chainable interface, making it easier to retrieve, insert, update, and delete data from a database without writing raw SQL statements.
 
@@ -11,3 +11,15 @@ $users = DB::table('users')
             ->orderBy('name', 'asc')
             ->get();
 
+================================================
+
+
+2. Question Answer ---------
+
+To retrieve the "excerpt" and "description" columns from the "posts" table using Laravel's query builder and store the result in the $posts variable--
+
+$posts = DB::table('posts')
+            ->select('excerpt', 'description')
+            ->get();
+
+return $posts;
