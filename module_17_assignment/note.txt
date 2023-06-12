@@ -45,3 +45,20 @@ Here's an example to illustrate the usage of distinct() with select():
                             ->select('name', 'email')
                             ->distinct()
                             ->get();
+
+
+
+4. Question Answer -----------
+
+Here's the code to retrieve the first record from the "posts" table where the "id" is 2 using Laravel's query builder, store the result in the $posts variable, and print the "description" column of the $posts variable:
+
+    $posts = DB::table('posts')
+                ->where('id', 2)
+                ->first();
+
+    if ($posts) {
+        echo $posts->description;
+    }
+
+
+
